@@ -8,6 +8,7 @@ const basicAuthMiddleware = (req, res, next) => {
   if (!token) return res.status(401).send("Access denied. No token provided.");
 
   try {
+    // In a real service "config" would have been placed in a shared database.
     const decoded = jwt.verify(token, config.jwtSecert);
     req.role = decoded;
     //Check permission for role
